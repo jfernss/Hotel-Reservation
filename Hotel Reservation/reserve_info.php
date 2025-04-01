@@ -14,8 +14,11 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
+// Set timezone to Philippines
+date_default_timezone_set('Asia/Manila');
+
 $submissionTime = filter_input(INPUT_POST, 'submissionTime');
-$reservationTime = date('h:i A');
+$reservationTime = date('Y-m-d H:i:s');
 
 $rates = [
     'Single' => [
