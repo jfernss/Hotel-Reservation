@@ -330,7 +330,10 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Reservation Details</h1>
-        <button class="btn btn-primary" onclick="document.getElementById('addReservationModal').style.display='block'">Add New Reservation</button>
+        <div>
+            <button class="btn btn-primary" onclick="document.getElementById('addReservationModal').style.display='block'">Add New Reservation</button>
+            <a href="admin_login.php" class="btn btn-secondary">Logout</a>
+        </div>
     </div>
 
     <!-- Add Reservation Modal -->

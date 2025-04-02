@@ -73,6 +73,7 @@
                 <input type="password" class="form-control" id="admin_password" name="admin_password" required>
             </div>
             <button type="submit" class="btn btn-login w-100 py-2">Login</button>
+            <a href="home.php" class="btn btn-secondary w-100 py-2 mt-2">Go Home</a>
             <?php
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $username = $_POST['admin_username'];
