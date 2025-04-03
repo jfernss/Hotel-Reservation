@@ -79,28 +79,25 @@
                 $username = $_POST['admin_username'];
                 $password = $_POST['admin_password'];
 
-                $conn = new mysqli('localhost', 'root', '', 'hotel_reservation');
+                try {
+                    $conn = new PDO('mysql:host=localhost;dbname=hotel_reservation', 'root', '');
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                if ($conn->connect_error) {
-                    die('Connection failed: ' . $conn->connect_error);
+                    // Validate admin credentials
+                    $stmt = $conn->prepare('SELECT * FROM admin_accounts WHERE username = :username AND password = :password');
+                    $stmt->bindParam(':username', $username);
+                    $stmt->bindParam(':password', $password);
+                    $stmt->execute();
+
+                    if ($stmt->rowCount() > 0) {
+                        header('Location: admin.php');
+                        exit();
+                    } else {
+                        echo '<div class="text-danger text-center mt-3">Invalid username or password</div>';
+                    }
+                } catch (PDOException $e) {
+                    die('Connection failed: ' . $e->getMessage());
                 }
-
-                // Validate admin credentials
-                $stmt = $conn->prepare('SELECT * FROM admin_accounts WHERE username = ? AND password = ?');
-                $stmt->bind_param('ss', $username, $password);
-                $stmt->execute();
-                $result = $stmt->get_result();
-
-                if ($result->num_rows > 0) {
-                   
-                    header('Location: admin.php');
-                    exit();
-                } else {
-                    echo '<div class="text-danger text-center mt-3">Invalid username or password</div>';
-                }
-
-                $stmt->close();
-                $conn->close();
             }
             ?>
         </form>

@@ -93,12 +93,12 @@ if (isset($_POST['update_reservation'])) {
             total_bill = :totalBill
             WHERE id = :id");
         
-        // Calculate number of days
+       
         $fromDate = new DateTime($_POST['from_date']);
         $toDate = new DateTime($_POST['to_date']);
         $numDays = $fromDate->diff($toDate)->days;
         
-        // Calculate rates based on room type and capacity
+       
         $rates = [
             'Single' => ['Regular' => 1000, 'Deluxe' => 3000, 'Suite' => 5000],
             'Double' => ['Regular' => 2000, 'Deluxe' => 5000, 'Suite' => 8000],
@@ -108,11 +108,11 @@ if (isset($_POST['update_reservation'])) {
         $dailyRate = $rates[$_POST['room_capacity']][$_POST['room_type']];
         $subTotal = $dailyRate * $numDays;
         
-        // Calculate discount
+    
         $discount = ($numDays >= 6) ? 0.15 : 0.10;
         $discountAmount = $subTotal * $discount;
         
-        // Calculate additional charges
+    
         $additionalCharge = 0;
         if ($_POST['payment_type'] === 'Cheque') {
             $additionalCharge = $subTotal * 0.05;
@@ -120,7 +120,7 @@ if (isset($_POST['update_reservation'])) {
             $additionalCharge = $subTotal * 0.10;
         }
         
-        // Calculate total bill
+    
         $totalBill = $subTotal + $additionalCharge - $discountAmount;
         
         $stmt->execute([
@@ -145,7 +145,7 @@ if (isset($_POST['update_reservation'])) {
     }
 }
 
-// Get dashboard statistics
+
 $stmt = $conn->prepare("SELECT COUNT(*) FROM reservations");
 $stmt->execute();
 $totalReservations = $stmt->fetchColumn();
@@ -305,7 +305,17 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <?php if (isset($_SESSION['success_message'])): ?>
-        <div class="success-message"><?php echo $_SESSION['success_message']; unset($_SESSION['success_message']); ?></div>
+        <div class="success-message" id="successMessage">
+            <?php echo $_SESSION['success_message']; unset($_SESSION['success_message']); ?>
+        </div>
+        <script>
+            setTimeout(() => {
+                const successMessage = document.getElementById('successMessage');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+            }, 2000); 
+        </script>
     <?php endif; ?>
     
     <?php if (isset($_SESSION['error_message'])): ?>
@@ -336,7 +346,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-    <!-- Add Reservation Modal -->
+    <!-- Reservation Modal -->
     <div id="addReservationModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="document.getElementById('addReservationModal').style.display='none'">&times;</span>
@@ -526,7 +536,6 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             document.getElementById('editReservationModal').style.display = 'block';
         }
 
-        // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target == document.getElementById('addReservationModal')) {
                 document.getElementById('addReservationModal').style.display = "none";
@@ -542,7 +551,6 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             document.getElementById('from_date').min = today;
             document.getElementById('to_date').min = today;
             
-            // Update to_date min when from_date changes
             document.getElementById('from_date').addEventListener('change', function() {
                 document.getElementById('to_date').min = this.value;
             });

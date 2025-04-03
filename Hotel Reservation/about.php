@@ -19,30 +19,22 @@
             font-weight: bolder;
             color: #334D99 !important;
         }
-        .team-member {
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: start;
-            gap: 2rem;
+        .content-section{
+            background-color: #fafafa;
+            border: 2px solid #E0E0E0;
         }
-        .team-member img {
-            width: 350px;
-            height: 350px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-        .team-member-info h2 {
-            margin-bottom: 0.5rem;
+        .content-section h2 {
+            margin-bottom: 1rem;
             font-size: 2rem;
+            font-weight: bold;
         }
-        .team-member-info span {
-            color: #666;
-            font-size: 1.5rem;
-        }
-        .team-member-info p {
-            margin-top: 1rem;
+        .content-section p, .content-section ul {
             font-size: 1.3rem;
             line-height: 1.8;
+        }
+        .content-section ul {
+            list-style-type: disc;
+            margin-left: 2rem;
         }
     </style>
 </head>
@@ -59,25 +51,29 @@
                     <li class="nav-item"><a class="nav-link" href="reservation.php">Reservation</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="admin.php">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin_login.php">Admin</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container mt-5">
-        <div class="team-member">
-            <img src="josh.jpg" alt="Joshua">
-            <div class="team-member-info">
-                <h2>Joshua Fernandez <span>- General Manager</span></h2>
-                <p>Joshua Fernandez is the General Manager at our hotel, overseeing daily operations with a focus on providing excellent guest experiences. With over 10 years in the hospitality industry, Joshua is dedicated to creating a warm and welcoming environment for every guest. His leadership style emphasizes teamwork, efficiency, and a personalized touch to make each stay memorable. He ensures that every aspect of our hotel meets the highest standards of quality and service.</p>
-            </div>
+        <div class="content-section p-4 mb-5 rounded shadow">
+            <h2 style="color: #334D99;">Our Mission</h2>
+            <p>Our mission is to provide exceptional hospitality services that exceed guest expectations, creating memorable experiences through personalized care, innovation, and a commitment to excellence.</p>
         </div>
-        <div class="team-member">
-            <img src="rod.jpg" alt="Rod">
-            <div class="team-member-info">
-                <h2>Rod Anthony Baloro <span>- Front Office Manager</span></h2>
-                <p>Rod Anthony Baloro is the Front Office Manager, ensuring that guests receive a seamless and welcoming experience from check-in to check-out. With a strong background in customer service and hotel operations, Rod leads the front desk team with professionalism and efficiency. He prioritizes guest satisfaction, oversees reservations, and manages smooth coordination between departments to enhance the overall stay of every visitor.</p>
-            </div>
+        <div class="content-section p-4 mb-5 rounded shadow">
+            <h2 style="color: #334D99;">Our Vision</h2>
+            <p>Our vision is to be the leading hotel in the industry, recognized for our outstanding service, sustainable practices, and dedication to creating a welcoming environment for all our guests.</p>
+        </div>
+        <div class="content-section p-4 rounded shadow">
+            <h2 style="color: #334D99;">Our Objectives</h2>
+            <ul>
+                <li>To deliver unparalleled guest satisfaction through exceptional service.</li>
+                <li>To foster a culture of innovation and continuous improvement.</li>
+                <li>To operate sustainably and responsibly, minimizing our environmental impact.</li>
+                <li>To create a positive and inclusive workplace for our team members.</li>
+                <li>To build lasting relationships with our guests and the community.</li>
+            </ul>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -98,7 +98,7 @@ $roomType = $roomCapacity = $paymentType = $selectedDates = "";
                     <li class="nav-item"><a class="nav-link" href="reservation.php">Reservation</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="admin.php">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin_login.php">Admin</a></li>
                 </ul>
             </div>
         </div>
